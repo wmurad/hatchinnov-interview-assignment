@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="OFF">
+	<Properties>
+		<Property name="LOG_FILE_LOCATION">../logs</Property>
+		<Property name="LOG_PATTERN">%d{yyyy.MM.dd HH:mm:ss.SSS} [%p] %c: %m%n
+		</Property>
+	</Properties>
+
+	<Appenders>
+		<RollingFile name="FILE" fileName="${LOG_FILE_LOCATION}/takehome-discovery.log"
+			filePattern="${LOG_FILE_LOCATION}/takehome-discovery.%d{MM-dd-yyyy}.log">
+			<PatternLayout>
+				<Pattern>${LOG_PATTERN}</Pattern>
+			</PatternLayout>
+
+			<Policies>
+				<OnStartupTriggeringPolicy/>
+				<TimeBasedTriggeringPolicy/>
+			</Policies>
+		</RollingFile>
+
+		<Console name="STDOUT" target="SYSTEM_OUT" follow="true">
+			<PatternLayout pattern="${LOG_PATTERN}" />
+		</Console>
+	</Appenders>
+
+	<Loggers>
+		<Root level="WARN">
+			<AppenderRef ref="FILE" />
+			<AppenderRef ref="STDOUT" />
+		</Root>
+	</Loggers>
+</Configuration>

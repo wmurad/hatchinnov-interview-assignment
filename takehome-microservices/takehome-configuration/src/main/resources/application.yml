@@ -1,0 +1,25 @@
+spring:
+  application:
+    name: takehome-configuration
+  profiles:
+    active: native
+  cloud:
+    config:
+      server:
+        native:
+          search-locations: ["classpath:/config","classpath:/config/takehome"]
+  security:
+    user:
+      name: takehomeconfig
+      password: eDbAM29d8f9z
+server:
+  servlet:
+    context-path: /takehome-configuration
+  port: 8088
+eureka:
+  client:
+    registerWithEureka: true
+    serviceUrl:
+      defaultZone: ${REGISTRY_AND_DISCOVERY_URI:http://localhost:8761/eureka}
+  instance:
+   hostname: localhost

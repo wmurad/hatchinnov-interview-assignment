@@ -1,0 +1,33 @@
+spring:
+  application:
+    name: takehome-gateway
+  cloud:
+    config:
+      allow-override: true
+      override-system-properties: false
+    gateway:
+      routes:
+        - id: takehome
+          uri: lb://takehome
+          predicates:
+          - Path=/takehome/**
+        - id: takehomeoauth
+          uri: lb://takehomeoauth
+          predicates:
+          - Path=/takehomeoauth/**
+server:
+  port: 8080
+eureka:
+  client:
+    registerWithEureka: true
+    serviceUrl:
+      defaultZone: ${REGISTRY_AND_DISCOVERY_URI:http://localhost:8761/eureka}
+  instance:
+management:
+  endpoint:
+    gateway:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: gateway

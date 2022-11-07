@@ -1,0 +1,18 @@
+spring:
+  application:
+    name: takehomediscovery
+  cloud:
+    config:
+      allow-override: true
+      override-system-properties: false
+server:
+  port: 8761
+eureka:
+  client:
+    fetchRegistry: 'false'
+    registerWithEureka: 'false'
+  instance:
+    hostname: localhost
+    prefer-ip-address: true
+  server:
+     waitTimeInMsWhenSyncEmpty: 0

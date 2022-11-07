@@ -1,0 +1,22 @@
+spring:
+  application:
+    name: takehome
+redis:
+  database: 0
+  host: ${REDIS_SERVER_HOST:localhost}
+  port: ${REDIS_SERVER_POST:6379}
+  password: ${REDIS_SERVER_PASSWORD:password}
+  timeout: 60000
+server:
+  servlet:
+    context-path: /takehome
+  port: 8082
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: ${REGISTRY_AND_DISCOVERY_URI:http://localhost:8761/eureka}
+  instance:
+    preferIpAddress: true
+takehome:
+  continentDataFilePath: classpath:continent-data.json
+  countryDataFilePath: classpath:country-data.json

@@ -1,0 +1,20 @@
+spring:
+  application:
+    name: takehomeoauth
+  profiles:
+    active: ${APPLICATION_ENV:prod}
+  cloud:
+    config:
+      allow-override: true
+      override-system-properties: false
+server:
+  port: 8090
+  servlet:
+    context-path: /takehomeoauth
+eureka:
+  client:
+    registerWithEureka: true
+    serviceUrl:
+      defaultZone: ${REGISTRY_AND_DISCOVERY_URI:http://localhost:8761/eureka}
+  instance:
+   hostname: localhost

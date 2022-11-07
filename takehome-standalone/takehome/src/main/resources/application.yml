@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: "takehome"
+server:
+  servlet:
+    context-path: /takehome
+takehome:
+  continentDataFilePath: classpath:continent-data.json
+  countryDataFilePath: classpath:country-data.json

@@ -1,0 +1,155 @@
+{
+	"info": {
+		"_postman_id": "03e28bfa-7707-4a1b-9c4b-4e414176c50a",
+		"name": "takehome-api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "3855365"
+	},
+	"item": [
+		{
+			"name": "takehome-continentcountry-standalone",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "api-key",
+						"value": "waheed",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/takehome/continent-countries?countryCode=US&countryCode=AU&countryCode=VVV",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"takehome",
+						"continent-countries"
+					],
+					"query": [
+						{
+							"key": "countryCode",
+							"value": "US"
+						},
+						{
+							"key": "countryCode",
+							"value": "AU"
+						},
+						{
+							"key": "countryCode",
+							"value": "VVV"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "takehome-continentcountry-micro",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "api-key",
+						"value": "waheed",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJraWQiOiI0MDI2Mjk1ZC02OGRlLTRmMTAtOTYwZC03Nzg0NTI0YWU1ODMiLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJ0YWtlaG9tZXVzZXJjbGllbnQxIiwiYXVkIjoidGFrZWhvbWV1c2VyY2xpZW50MSIsIm5iZiI6MTY2Nzc3MTU2Niwic2NvcGUiOlsidGFrZWhvbWUuYXBpIl0sImlzcyI6Imh0dHA6XC9cLzExY2U0NThmYjE0Njo4MDkwXC90YWtlaG9tZW9hdXRoIiwiZXhwIjoxNjY3NzcxODY2LCJpYXQiOjE2Njc3NzE1NjZ9.PTK00Gan38xloRH85ldRUmuB2kx6uPLcJeMBMzD2OSwCWEH4OGHuorcG5ba8Rize36XheY4hQtu-eBDqL_whzyiHj9iW6LDf826QMY2iyoAF_xs6kPC6Os8A8G4JOt16WNpamfu0D9mnoLkTxW3Hz6cruI1cu1gsvyRTpZKvjHn9sTqfVjzVIvU9LLAGpULcMsoK9Rf--jR301e6QiNTqUPyCdrTv-7AspmMhvC7gnVX4nvqkDzZV_OT2Pm66oSs_RLx86UtUISRIYdt_R0LqgF_hHY1EaE57mnjClxsuyok3zDcg2MNZoaAbysHH_GKoCQXgV90wQM32HsQl9MOMQ",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/takehome/continent-countries?countryCode=US&countryCode=AU&countryCode=VVV",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"takehome",
+						"continent-countries"
+					],
+					"query": [
+						{
+							"key": "countryCode",
+							"value": "US"
+						},
+						{
+							"key": "countryCode",
+							"value": "AU"
+						},
+						{
+							"key": "countryCode",
+							"value": "VVV"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "takehome-oauth-micro",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "83AN9Q7m0sZV",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "takehomeuserclient1",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "grant_type",
+							"value": "client_credentials",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "takehomeuser",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "password",
+							"value": "mC8YSf941puH",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/takehomeoauth/oauth2/token",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"takehomeoauth",
+						"oauth2",
+						"token"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

@@ -1,0 +1,77 @@
+version: '3'
+services:
+  redis-server:
+    image: redis:7.0.5-alpine
+    restart: always
+    hostname: redisserver
+    expose:
+      - '6379:6379'
+    command: redis-server --save 20 1 --loglevel warning --requirepass eYVX7EwVmmxKPCDmwMtyKVge8oLd2t81
+    networks:
+      - takehome-services-network
+  configuration-server:
+    build: ./takehome-configuration
+    image: takehome/configuration
+    expose:
+      - "8088:8088"
+    depends_on:
+     - discovery-server
+    environment:
+      REGISTRY_AND_DISCOVERY_URI: http://discovery-server:8761/eureka
+    networks:
+      - takehome-services-network  
+  discovery-server:
+    build: ./takehome-discovery
+    image: takehome/discovery
+    expose:
+      - "8761:8761"
+    ports:
+      - "8761:8761"
+    networks:
+      - takehome-services-network
+  auth-server:
+    build: ./takehome-oauth
+    image: takehome/oauth
+    expose:
+      - "8090:8090"
+    networks:
+      - takehome-services-network
+    environment:
+      REGISTRY_AND_DISCOVERY_URI: http://discovery-server:8761/eureka
+  gateway-server:
+    build: ./takehome-gateway
+    image: takehome/gateway
+    ports:
+      - "8080:8080"
+    restart: on-failure
+    depends_on:
+     - discovery-server
+     - configuration-server
+    environment:
+      REGISTRY_AND_DISCOVERY_URI: http://discovery-server:8761/eureka
+      CONFIGURATION_SERVER_URI: http://configuration-server:8088/takehome-configuration
+      APPLICATION_ENV: prod
+    networks:
+      - takehome-services-network  
+  takehome-api:
+    build: ./takehome
+    image: takehome/api
+    expose:
+      - "8082:8082"
+    depends_on:
+     - discovery-server
+     - gateway-server
+     - redis-server
+    environment:
+      REGISTRY_AND_DISCOVERY_URI: http://discovery-server:8761/eureka
+      CONFIGURATION_SERVER_URI: http://configuration-server:8088/takehome-configuration
+      REDIS_SERVER_HOST: redisserver
+      REDIS_SERVER_POST: 6379
+      REDIS_SERVER_PASSWORD: eYVX7EwVmmxKPCDmwMtyKVge8oLd2t81
+      AUTH_SERVER_URI: http://auth-server:8090/takehomeoauth
+    networks:
+      - takehome-services-network
+networks:
+    takehome-services-network:
+      driver: bridge 
+          
